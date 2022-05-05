@@ -9,7 +9,7 @@ services:
       - POSTGRES_PASSWORD=12345
     volumes:
       - ./db/init-user-db.sql:/docker-entrypoint-initdb.d/init.sql
-      - ./data:/var/lib/postgresql/data/
+      - db_vol:/var/lib/postgresql/data/
     ports:
       - "8001:5432"
     networks:
@@ -20,7 +20,19 @@ services:
       - "5000:5000"    
     networks:
       - network1
+      - network2
+  front:
+    image: debian
+    stdin_open: true
+    tty: true   
+    networks:
+      - network2   
+volumes:
+  db_vol:
+    external: true
 networks:
   network1:
+    driver: bridge      
+  network2:
     driver: bridge      
     

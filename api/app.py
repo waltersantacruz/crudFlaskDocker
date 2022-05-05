@@ -11,7 +11,7 @@ PWD = os.getenv('db_password')
 
 #Conexion base
 app=Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"]="postgresql://"+USER+":"+PWD+"@localhost:5432/postgres"
+app.config["SQLALCHEMY_DATABASE_URI"]="postgresql://"+USER+":"+PWD+"@db:5432/postgres"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"]=False
 
 
